@@ -9,10 +9,22 @@
     "lint:fix": "eslint --fix **/*.js"
   },
   "dependencies": {
-    "cors": "2.8.5",
+    "bcrypt": "^5.1.1",
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
     "cross-env": "7.0.3",
-    "express": "4.17.1",
-    "morgan": "1.10.0"
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "gravatar": "^1.8.2",
+    "jimp": "^1.6.0",
+    "joi": "^17.13.3",
+    "jose": "^5.6.3",
+    "jsonwebtoken": "^8.5.1",
+    "jsrsasign": "^11.1.0",
+    "mongoose": "^5.13.22",
+    "morgan": "^1.10.0",
+    "multer": "^1.4.5-lts.1",
+    "node-jose": "^2.2.0"
   },
   "devDependencies": {
     "eslint": "7.19.0",
@@ -21,6 +33,6 @@
     "eslint-plugin-import": "2.25.3",
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-promise": "5.2.0",
-    "nodemon": "2.0.15"
+    "nodemon": "^2.0.15"
   }
 }

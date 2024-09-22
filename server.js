@@ -1,5 +1,18 @@
-const app = require("./app");
+const app = require('./app');
+const mongoose = require('mongoose');
+require('dotenv').config();
 
-app.listen(3000, () => {
-  console.log("Server is running. Use our API on port: 3000");
-});
+const { MONGODB_URL, PORT } = process.env;
+
+mongoose
+  .connect(MONGODB_URL, { useNewUrlParser: true, useUnifiedTopology: true })
+  .then(() => {
+    console.log('Connected to MongoDB');
+    app.listen(PORT, () => {
+      console.log(`Server running on port ${PORT}`);
+    });
+  })
+  .catch((error) => {
+    console.log(`Failed to connect to MongoDB: ${error.message}`);
+    process.exit(1);
+  });
