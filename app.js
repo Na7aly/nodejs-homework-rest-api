@@ -1,25 +1,21 @@
-const express = require('express')
-const logger = require('morgan')
-const cors = require('cors')
+import express from 'express';
+import mongoose from 'mongoose';
+import dotenv from 'dotenv';
 
-const contactsRouter = require('./routes/api/contacts')
+dotenv.config();
 
-const app = express()
+import userRoutes from './routes/api/users.js'; 
 
-const formatsLogger = app.get('env') === 'development' ? 'dev' : 'short'
+const app = express();
 
-app.use(logger(formatsLogger))
-app.use(cors())
-app.use(express.json())
+app.use(express.json());
+app.use('/users', userRoutes);
 
-app.use('/api/contacts', contactsRouter)
-
-app.use((req, res) => {
-  res.status(404).json({ message: 'Not found' })
+mongoose.connect(process.env.DB_URL, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
 })
+  .then(() => console.log('Connected to MongoDB'))
+  .catch(err => console.log('MongoDB connection error:', err));
 
-app.use((err, req, res, next) => {
-  res.status(500).json({ message: err.message })
-})
-
-module.exports = app
+export default app; 
